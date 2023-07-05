@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:vms="clr-namespace:CVSlow"  
+    x:Class="CVSlow.ListPage">
+
+    <ContentPage.BindingContext>
+        <vms:ListVM/>
+    </ContentPage.BindingContext>
+        
+    <ContentPage.Content>
+        <Grid Padding="10">
+            <Label Text="{Binding ItemCount, StringFormat='List has {0} items'}"/>
+            
+            <CollectionView
+                ItemsSource="{Binding Items}"                
+                ItemSizingStrategy="MeasureAllItems">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"
+                        Span="2"
+                        VerticalItemSpacing="20"
+                        HorizontalItemSpacing="20" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>                        
+                        <Border
+                            Stroke="#C49B33"
+                            StrokeThickness="2"
+                            StrokeShape="RoundRectangle 15,0,0,15"
+                            Background="#2B0B98"
+                            Padding="8,4"
+                            HorizontalOptions="Center">
+                            <VerticalStackLayout Padding="10">
+                                <Label Text="{Binding Name}" AutomationId="{Binding Name, StringFormat='RecommendationType_{0}'}"/>
+                                <Image Source="{Binding ImageSource}" WidthRequest="75" HeightRequest="75"/>
+                                <Label Text="{Binding ImageName}"/>
+                                <HorizontalStackLayout
+                                    BindableLayout.ItemsSource="{Binding Badges}"
+                                    AutomationId="list_WalletCheckDocuments">
+                                    <BindableLayout.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid Margin="2">
+                                                <Image Source="{Binding .}" WidthRequest="35" HeightRequest="35" />
+                                            </Grid>
+                                        </DataTemplate>
+                                    </BindableLayout.ItemTemplate>
+                                </HorizontalStackLayout>
+                                
+                                <HorizontalStackLayout Spacing="4">
+                                    <Button Text="Interaction" Command="{Binding ShowHideCmd}" WidthRequest="125" VerticalOptions="Center"/>
+                                    <Label Text="Im not hiding" IsVisible="{Binding ShowHide}" VerticalOptions="Center"/>                                    
+                                </HorizontalStackLayout>                                
+                            </VerticalStackLayout>                            
+                        </Border>                        
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        
+            <Button Text="Add 1000 items" Command="{Binding AddMoreCmd}" VerticalOptions="End" HorizontalOptions="Center"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
