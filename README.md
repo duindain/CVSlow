@@ -7,3 +7,5 @@ Navigating back to the main page then to the list page does have a significant p
 Repeating that navigation doesnt release the previous memory consumed
 
 Even navigating back to the MainPage consumes a few more MB each time
+
+Scrolling up and down the list also consumes more memory that isnt released though not as significant as during navigation
