@@ -1,4 +1,4 @@
-# CVSlow
+# CollectionView in Maui performance sample app
 
 Sample app with a collectionview page in that collectionview is a few controls, labels, images and a button and a border around them
 Adding items to the list seems to have negligable performance impact
